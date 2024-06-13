@@ -126,12 +126,7 @@ def rodar_jogo():
         relogio.tick(velocidade_jogo)  # Utilizando o relogio para controlar a taxa de atualização
 
 
-# criar a lógica de término do jogo
-# cobra colidir com a parede
-# cobra colidir nela mesma
 
-# pegar as interações do usuário
-# fechar tela
-# ou apertar as teclas de ações no jogo
 
 rodar_jogo()
+#aparentemente nao atribui as colisoes com as paredes 
