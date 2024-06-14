@@ -1,3 +1,7 @@
+#adicionar janela interativa para selecionar dificuldade dentro do game sem precisar de input.
+#
+
+
 import pygame
 import random
 
