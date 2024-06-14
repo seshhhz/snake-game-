@@ -4,7 +4,7 @@ import random
 pygame.init()
 
 pygame.display.set_caption('Snake Game')
-largura, altura = 1280, 720
+largura, altura = 640, 480
 tela = pygame.display.set_mode((largura, altura))
 relogio = pygame.time.Clock()
 preto = (0, 0, 0)
@@ -13,7 +13,17 @@ vermelho = (255, 0, 0)
 verde = (0, 255, 0)
 
 tamanho_quadrado = 20
-velocidade_jogo = 15
+
+def dificuldade(dificuldade_jogo):
+    if dificuldade_jogo == "F":
+        velocidade_jogo = 10
+    elif dificuldade_jogo == "M":
+        velocidade_jogo = 16
+    elif dificuldade_jogo == "D":
+        velocidade_jogo = 20
+    else:
+        raise ValueError("Nível de dificuldade desconhecido: escolha entre F, M ou D.")
+    return velocidade_jogo
 
 def gerar_comida():
     comida_x = round(random.randrange(0, largura - tamanho_quadrado) / 20.0) * 20.0
@@ -45,6 +55,18 @@ def selecionar_velocidade(tecla):
     elif tecla == pygame.K_LEFT:
         velocidade_x = -tamanho_quadrado
         velocidade_y = 0
+    elif tecla == pygame.K_s:
+        velocidade_x = 0
+        velocidade_y = tamanho_quadrado
+    elif tecla == pygame.K_w:
+        velocidade_x = 0
+        velocidade_y=-tamanho_quadrado
+    elif tecla == pygame.K_d:
+        velocidade_x = tamanho_quadrado
+        velocidade_y=0
+    elif tecla == pygame.K_a:
+        velocidade_x = -tamanho_quadrado 
+        velocidade_y= 0 
     else:
         velocidade_x, velocidade_y = 0, 0
 
@@ -61,6 +83,12 @@ def rodar_jogo():
 
     tamanho_cobra = 1
     pixels = []
+
+    dificuldade_jogo = input("Escolha a dificuldade (F, M ou D): ")
+
+    # Chama a função dificuldade para definir a velocidade do jogo
+    velocidade_jogo = dificuldade(dificuldade_jogo)
+    print("Velocidade do jogo selecionada:", velocidade_jogo)
 
     comida_x, comida_y = gerar_comida()
 
@@ -100,4 +128,3 @@ def rodar_jogo():
 
 rodar_jogo()
 pygame.quit()
-#resolvi o problema de colisoes e indentacoes incorretas 
